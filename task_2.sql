@@ -1,11 +1,16 @@
+-- TASK 2: CREATE TABLES FOR alx_book_store
+-- All SQL keywords are UPPERCASE as required.
+
 CREATE DATABASE IF NOT EXISTS alx_book_store;
 USE alx_book_store;
 
+-- AUTHORS
 CREATE TABLE IF NOT EXISTS Authors (
     author_id INT PRIMARY KEY,
     author_name VARCHAR(215)
 );
 
+-- BOOKS
 CREATE TABLE IF NOT EXISTS Books (
     book_id INT PRIMARY KEY,
     title VARCHAR(130),
@@ -15,6 +20,7 @@ CREATE TABLE IF NOT EXISTS Books (
     FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
 
+-- CUSTOMERS
 CREATE TABLE IF NOT EXISTS Customers (
     customer_id INT PRIMARY KEY,
     customer_name VARCHAR(215),
@@ -22,6 +28,7 @@ CREATE TABLE IF NOT EXISTS Customers (
     address TEXT
 );
 
+-- ORDERS
 CREATE TABLE IF NOT EXISTS Orders (
     order_id INT PRIMARY KEY,
     customer_id INT,
@@ -29,11 +36,12 @@ CREATE TABLE IF NOT EXISTS Orders (
     FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
+-- ORDER_DETAILS
 CREATE TABLE IF NOT EXISTS Order_Details (
     orderdetailid INT PRIMARY KEY,
     order_id INT,
     book_id INT,
     quantity DOUBLE,
     FOREIGN KEY (order_id) REFERENCES Orders(order_id),
-    FOREIGN KEY (book_id) REFRENCES Books(book_id)
+    FOREIGN KEY (book_id) REFERENCES Books(book_id)
 );
